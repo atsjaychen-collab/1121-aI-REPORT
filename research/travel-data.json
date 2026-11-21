@@ -1,0 +1,235 @@
+{
+  "schema_version": "1.0",
+  "project": "AI 台灣旅遊情報員 × 智慧行程推薦網站",
+  "researched_at": "2026-11-21",
+  "record_count": 10,
+  "status_guide": {
+    "已驗證": "景點基本資料或活動日期可由引用的官方資料直接核對。",
+    "待確認": "推介客群屬研究員初步配對，或營運細節尚無本檔引用來源支持；不得當作已公布事實。",
+    "模擬資料": "合成示例資料。本次因可連線查核，沒有建立任何模擬紀錄。"
+  },
+  "records": [
+    {
+      "id": "Attraction_345040000G_000012",
+      "record_type": "景點",
+      "name": "阿里山國家森林遊樂區",
+      "region": { "county_city": "嘉義縣", "district": "阿里山鄉" },
+      "features": ["森林小火車", "神木", "雲海", "日出", "晚霞", "森林步道"],
+      "suitable_audiences": [
+        { "group": "熟齡旅客", "basis": "觀光署景點頁列有熟齡旅遊及無障礙旅遊標籤。", "status": "已驗證" },
+        { "group": "情侶", "basis": "依日出、雲海與森林景觀作行程初步配對。", "status": "待確認" },
+        { "group": "親子", "basis": "依森林鐵道與自然景觀作行程初步配對；同行兒童年齡及步行需求待確認。", "status": "待確認" }
+      ],
+      "activity_dates": { "start": null, "end": null, "status": "不適用：本筆為景點資料，非特定日期活動。" },
+      "record_status": "已驗證",
+      "is_simulated": false,
+      "source_ids": ["S01", "S03"],
+      "sources": [
+        { "source_id": "S01", "url": "https://data.gov.tw/dataset/7777" },
+        { "source_id": "S03", "url": "https://eng.taiwan.net.tw/m1.aspx?id=247&sNo=0002016" }
+      ],
+      "source_update_time": "2026-11-21T00:20:10+08:00",
+      "queried_at": "2026-11-21",
+      "pending_items": ["出發當日園區服務、步道狀況、票價、營業時間及交通班次須再查各主管機關公告。"]
+    },
+    {
+      "id": "Attraction_A15010600H_000137",
+      "record_type": "景點／自行車道",
+      "name": "日月潭自行車道－水社段",
+      "region": { "county_city": "南投縣", "district": "魚池鄉" },
+      "features": ["沿日月潭湖岸", "水社碼頭至朝霧碼頭、竹石園、文武廟", "資料描述部分路段坡度平緩", "水社親水步道為無障礙斜坡道"],
+      "suitable_audiences": [
+        { "group": "親子", "basis": "開放資料描述水社親水步道平緩易行、適合親子同遊。", "status": "已驗證" },
+        { "group": "熟齡旅客", "basis": "資料描述有休憩點及無障礙斜坡道；個別旅客體能仍需確認。", "status": "已驗證" },
+        { "group": "情侶", "basis": "依湖岸景觀與步行／騎乘型態作行程初步配對。", "status": "待確認" }
+      ],
+      "activity_dates": { "start": null, "end": null, "status": "不適用：本筆為路線資料，非特定日期活動。" },
+      "record_status": "已驗證",
+      "is_simulated": false,
+      "source_ids": ["S01", "S04"],
+      "sources": [
+        { "source_id": "S01", "url": "https://data.gov.tw/dataset/7777" },
+        { "source_id": "S04", "url": "https://data.gov.tw/dataset/7777" }
+      ],
+      "source_update_time": "2026-11-21T00:05:01+08:00",
+      "queried_at": "2026-11-21",
+      "pending_items": ["自行車租借、路段管制、天候及當日可通行情形待確認；未提供車班或租借價格。"]
+    },
+    {
+      "id": "Attraction_A15010800H_000082",
+      "record_type": "景點／步道",
+      "name": "二延平步道",
+      "region": { "county_city": "嘉義縣", "district": "番路鄉" },
+      "features": ["觀景平台", "步道約 2,165 公尺", "可眺望夕陽與雲海", "適合攝影取景"],
+      "suitable_audiences": [
+        { "group": "情侶", "basis": "官方景點資料提及夕陽、雲海及攝影景觀，屬研究員行程配對。", "status": "待確認" },
+        { "group": "熟齡旅客", "basis": "步道長度與步行能力需依個人狀況確認；不可僅依景觀推薦。", "status": "待確認" }
+      ],
+      "activity_dates": { "start": null, "end": null, "status": "不適用：本筆為步道資料，非特定日期活動。" },
+      "record_status": "已驗證",
+      "is_simulated": false,
+      "source_ids": ["S01", "S05"],
+      "sources": [
+        { "source_id": "S01", "url": "https://data.gov.tw/dataset/7777" },
+        { "source_id": "S05", "url": "https://eng.taiwan.net.tw/m1.aspx?id=A12-00535&sNo=0002016" }
+      ],
+      "source_update_time": "2026-08-27T15:54:40+08:00",
+      "queried_at": "2026-11-21",
+      "pending_items": ["步道近期維護、天候能見度及出發前路況待確認；開放資料更新時間較本次查詢日早。"]
+    },
+    {
+      "id": "Attraction_A15011000H_000040",
+      "record_type": "景點",
+      "name": "野柳地質公園",
+      "region": { "county_city": "新北市", "district": "萬里區" },
+      "features": ["海岬地形", "蕈狀岩", "海蝕洞", "豆腐石", "女王頭"],
+      "suitable_audiences": [
+        { "group": "親子", "basis": "特殊地形具自然觀察及地質解說題材，屬研究員初步配對。", "status": "待確認" },
+        { "group": "情侶", "basis": "海岸地景適合景觀型行程，屬研究員初步配對。", "status": "待確認" },
+        { "group": "熟齡旅客", "basis": "步行距離、地面狀況及無障礙需求未由本筆資料確認。", "status": "待確認" }
+      ],
+      "activity_dates": { "start": null, "end": null, "status": "不適用：本筆為景點資料，非特定日期活動。" },
+      "record_status": "已驗證",
+      "is_simulated": false,
+      "source_ids": ["S01", "S06"],
+      "sources": [
+        { "source_id": "S01", "url": "https://data.gov.tw/dataset/7777" },
+        { "source_id": "S06", "url": "https://eng.taiwan.net.tw/m1.aspx?sno=0042799" },
+        { "source_id": "S06", "url": "https://www.ylgeopark.org.tw/?language=TW" }
+      ],
+      "source_update_time": "2026-11-21T00:00:02+08:00",
+      "queried_at": "2026-11-21",
+      "pending_items": ["當日開放、票價、步行動線及海象相關公告須查官方園區網站。"]
+    },
+    {
+      "id": "Attraction_A15011000H_000155",
+      "record_type": "景點",
+      "name": "和平島地質公園",
+      "region": { "county_city": "基隆市", "district": "中正區" },
+      "features": ["海蝕地形與化石", "潮間帶觀察", "戲水池與沙灘", "資料提及無障礙步道及設施"],
+      "suitable_audiences": [
+        { "group": "親子", "basis": "開放資料明載適合親子出遊及戶外教學探索自然。", "status": "已驗證" },
+        { "group": "熟齡旅客", "basis": "資料描述園區有無障礙環境；實際動線與個人需求仍須確認。", "status": "已驗證" },
+        { "group": "情侶", "basis": "依海岸地景與自然觀察作行程初步配對。", "status": "待確認" }
+      ],
+      "activity_dates": { "start": null, "end": null, "status": "不適用：本筆為景點資料，非特定日期活動。" },
+      "record_status": "已驗證",
+      "is_simulated": false,
+      "source_ids": ["S01", "S07"],
+      "sources": [
+        { "source_id": "S01", "url": "https://data.gov.tw/dataset/7777" },
+        { "source_id": "S07", "url": "https://www.hpigeopark.org/" }
+      ],
+      "source_update_time": "2026-11-21T00:00:02+08:00",
+      "queried_at": "2026-11-21",
+      "pending_items": ["資料提及阿拉寶灣有季節及預約限制；實際日期、名額、園區服務與票價須以官方網站公告為準。"]
+    },
+    {
+      "id": "TW-EVT-2026-NTPC-CHRISTMASLAND",
+      "record_type": "活動",
+      "name": "2026 新北歡樂耶誕城",
+      "region": { "county_city": "新北市", "district": "板橋區" },
+      "features": ["城市耶誕主題活動", "官方頁列示新北市政府廣場、板橋車站前廣場及萬坪公園"],
+      "suitable_audiences": [
+        { "group": "親子", "basis": "依節慶燈飾與城市活動型態作初步配對。", "status": "待確認" },
+        { "group": "情侶", "basis": "依節慶夜間活動型態作初步配對。", "status": "待確認" },
+        { "group": "熟齡旅客", "basis": "現場人潮、休息點及無障礙安排須確認後再推薦。", "status": "待確認" }
+      ],
+      "activity_dates": { "start": "2026-11-13", "end": "2026-12-27", "status": "已驗證：觀光署活動頁公布日期。" },
+      "record_status": "已驗證",
+      "is_simulated": false,
+      "source_ids": ["S08"],
+      "sources": [
+        { "source_id": "S08", "url": "https://eng.taiwan.net.tw/m1.aspx?lid=081758&sNo=0002019" }
+      ],
+      "queried_at": "2026-11-21",
+      "pending_items": ["每日燈區節目時刻、交通管制及當日活動異動須再查主辦單位公告。"]
+    },
+    {
+      "id": "TW-EVT-2026-CY-INTL-BAND",
+      "record_type": "活動",
+      "name": "2026 嘉義市國際管樂節",
+      "region": { "county_city": "嘉義市", "district": "官方頁列示嘉義市中央噴水圓環" },
+      "features": ["管樂演出", "資料涵蓋街頭演出及室內、戶外音樂會"],
+      "suitable_audiences": [
+        { "group": "親子", "basis": "依音樂文化活動型態作初步配對；演出時段及兒童適宜性待確認。", "status": "待確認" },
+        { "group": "情侶", "basis": "依音樂演出型態作初步配對。", "status": "待確認" },
+        { "group": "熟齡旅客", "basis": "演出場地、座位及步行距離須確認。", "status": "待確認" }
+      ],
+      "activity_dates": { "start": "2026-12-18", "end": "2027-01-01", "status": "已驗證：觀光署活動頁公布日期。" },
+      "record_status": "已驗證",
+      "is_simulated": false,
+      "source_ids": ["S09"],
+      "sources": [
+        { "source_id": "S09", "url": "https://eng.taiwan.net.tw/m1.aspx?lid=081761&sNo=0002019" },
+        { "source_id": "S09", "url": "https://www.chiayiband.com.tw/" }
+      ],
+      "queried_at": "2026-11-21",
+      "pending_items": ["每日節目表、各場地安排及入場方式待主辦單位公布或確認。"]
+    },
+    {
+      "id": "TW-EVT-2026-TPE-MARATHON",
+      "record_type": "活動",
+      "name": "2026 臺北馬拉松",
+      "region": { "county_city": "臺北市", "district": "官方頁列示臺北市政府廣場為活動地址" },
+      "features": ["城市路跑賽事", "觀光署頁面說明賽事結合運動與城市探索"],
+      "suitable_audiences": [
+        { "group": "親子", "basis": "以觀賽旅遊作初步配對；觀賽區、交管與兒童安全資訊待確認。", "status": "待確認" },
+        { "group": "情侶", "basis": "以運動觀賽或參賽旅遊作初步配對；個人參賽資格與報名狀態待確認。", "status": "待確認" },
+        { "group": "熟齡旅客", "basis": "若作觀賽推薦，須先確認交通管制、座位及步行條件。", "status": "待確認" }
+      ],
+      "activity_dates": { "start": "2026-12-20", "end": "2026-12-20", "status": "已驗證：觀光署活動頁公布日期。" },
+      "record_status": "已驗證",
+      "is_simulated": false,
+      "source_ids": ["S10"],
+      "sources": [
+        { "source_id": "S10", "url": "https://eng.taiwan.net.tw/m1.aspx?lid=081756&sNo=0002019" },
+        { "source_id": "S10", "url": "https://www.taipeicitymarathon.com/" }
+      ],
+      "queried_at": "2026-11-21",
+      "pending_items": ["報名是否開放、組別、費用、實際路線、起跑時刻及交通管制均未由本資料確認。"]
+    },
+    {
+      "id": "TW-EVT-2026-27-MAOLIN-BUTTERFLY",
+      "record_type": "活動／自然觀察",
+      "name": "2026－2027 茂林雙年賞蝶季",
+      "region": { "county_city": "高雄市", "district": "茂林區；官方頁列示茂林生態公園" },
+      "features": ["紫斑蝶季節性生態觀察", "觀光署說明為秋冬至翌年春季活動"],
+      "suitable_audiences": [
+        { "group": "親子", "basis": "依自然生態觀察型活動作初步配對。", "status": "待確認" },
+        { "group": "情侶", "basis": "依自然景觀與生態觀察作初步配對。", "status": "待確認" },
+        { "group": "熟齡旅客", "basis": "觀察點步行條件、接駁與休息設施待確認。", "status": "待確認" }
+      ],
+      "activity_dates": { "start": "2026-10-31", "end": "2027-03-31", "status": "已驗證：觀光署活動頁公布日期；實際蝶況不保證。" },
+      "record_status": "已驗證",
+      "is_simulated": false,
+      "source_ids": ["S11"],
+      "sources": [
+        { "source_id": "S11", "url": "https://eng.taiwan.net.tw/m1.aspx?lid=081768&sNo=0002019" }
+      ],
+      "queried_at": "2026-11-21",
+      "pending_items": ["各觀察點活動、接駁、導覽及當日生態狀況待主辦單位公告；不可承諾可見蝶況。"]
+    },
+    {
+      "id": "TW-EVT-2026-27-TAIWAN-HOTSPRING",
+      "record_type": "活動／觀光推廣",
+      "name": "2026－2027 台灣好湯－溫泉美食嘉年華",
+      "region": { "county_city": "全臺", "district": "各地溫泉區；分區活動依主辦單位資訊確認" },
+      "features": ["觀光署年度溫泉與美食推廣活動", "官方頁列出臺北、屏東四重溪及花蓮等溫泉季活動"],
+      "suitable_audiences": [
+        { "group": "情侶", "basis": "依溫泉與美食主題作初步配對。", "status": "待確認" },
+        { "group": "熟齡旅客", "basis": "依溫泉休閒主題作初步配對；旅客健康、設施與個別分區條件須自行確認。", "status": "待確認" },
+        { "group": "親子", "basis": "各分區設施年齡限制未由總活動頁統一說明，待確認。", "status": "待確認" }
+      ],
+      "activity_dates": { "start": "2026-09-04", "end": "2027-06-30", "status": "已驗證：觀光署活動頁公布活動期程。" },
+      "record_status": "已驗證",
+      "is_simulated": false,
+      "source_ids": ["S12"],
+      "sources": [
+        { "source_id": "S12", "url": "https://eng.taiwan.net.tw/m1.aspx?lid=081769&sNo=0002019" }
+      ],
+      "queried_at": "2026-11-21",
+      "pending_items": ["各溫泉區實際活動日期、合作店家、優惠條件、設施服務及票價待各分區官方頁確認。"]
+    }
+  ]
+}

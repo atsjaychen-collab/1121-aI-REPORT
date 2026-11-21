@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#142622">
+  <title>台灣旅遊情報週報｜旅行社行銷簡報</title>
+  <style>
+    :root {
+      --ink: #142622;
+      --ink-soft: #243c36;
+      --cream: #f4f1e7;
+      --paper: #fffdf7;
+      --coral: #ef795a;
+      --lime: #cde477;
+      --teal: #7fc5b0;
+      --muted: #9aa9a1;
+      --line: rgba(244,241,231,.23);
+      --display: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 100%; height: 100%; background: #101e1b; color: var(--cream); font-family: var(--display); }
+    body { display: grid; place-items: center; overflow: hidden; }
+    button, a { font: inherit; }
+    a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .presentation { position: relative; width: min(100vw, 177.7778dvh); height: min(100dvh, 56.25vw); aspect-ratio: 16 / 9; overflow: hidden; background: var(--ink); }
+    .slide {
+      display: none;
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      padding: clamp(30px, 6.4vw, 92px) clamp(26px, 7.4vw, 112px) 108px;
+      background: var(--ink);
+      color: var(--cream);
+      isolation: isolate;
+    }
+    .slide.active { display: flex; flex-direction: column; }
+    .slide.light { background: var(--cream); color: var(--ink); }
+    .slide.coral { background: var(--coral); color: var(--ink); }
+    .slide::before { content: ""; position: absolute; z-index: -1; width: 42vw; aspect-ratio: 1; border: 1px solid var(--line); border-radius: 50%; right: -13vw; top: -20vw; box-shadow: 0 0 0 42px rgba(255,255,255,.025), 0 0 0 84px rgba(255,255,255,.02); }
+    .slide.light::before { border-color: rgba(20,38,34,.14); box-shadow: 0 0 0 42px rgba(20,38,34,.025), 0 0 0 84px rgba(20,38,34,.02); }
+    .slide.coral::before { border-color: rgba(20,38,34,.22); box-shadow: 0 0 0 42px rgba(20,38,34,.04), 0 0 0 84px rgba(20,38,34,.025); }
+    .eyebrow { margin: 0 0 18px; color: var(--lime); font-size: clamp(12px, 1.1vw, 16px); font-weight: 800; letter-spacing: .15em; text-transform: uppercase; }
+    .light .eyebrow, .coral .eyebrow { color: #587248; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 970px; margin-bottom: 26px; font-size: clamp(46px, 7.2vw, 104px); line-height: 1.08; letter-spacing: -.055em; font-weight: 900; }
+    h2 { max-width: 1040px; margin-bottom: 16px; font-size: clamp(36px, 5vw, 70px); line-height: 1.13; letter-spacing: -.04em; font-weight: 900; }
+    .subtitle { max-width: 760px; margin-bottom: 0; color: #c1d0c8; font-size: clamp(18px, 2vw, 28px); line-height: 1.55; }
+    .light .subtitle, .coral .subtitle { color: #425750; }
+    .cover { justify-content: center; }
+    .cover .title-mark { display: block; width: 76px; height: 8px; margin: 0 0 34px; background: var(--coral); border-radius: 8px; }
+    .cover h1 span { color: var(--lime); }
+    .cover .cover-meta { display: flex; gap: 16px; align-items: center; margin-top: 38px; color: #c1d0c8; font-size: clamp(13px, 1.2vw, 17px); }
+    .cover .cover-meta strong { color: var(--cream); font-weight: 700; }
+    .date-chip { display: inline-flex; align-items: center; gap: 9px; padding: 9px 13px; border: 1px solid var(--line); border-radius: 99px; }
+    .date-chip::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--lime); }
+    .stack { display: grid; gap: clamp(14px, 2vw, 26px); margin-top: clamp(28px, 4vw, 56px); }
+    .three-col { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .two-col { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .segment { padding-top: 18px; border-top: 2px solid currentColor; }
+    .segment .num { display: block; margin-bottom: 16px; color: var(--coral); font-size: clamp(13px, 1.25vw, 18px); font-weight: 900; letter-spacing: .08em; }
+    .light .segment .num { color: #d76448; }
+    .segment h3 { margin-bottom: 9px; font-size: clamp(21px, 2.4vw, 34px); line-height: 1.25; letter-spacing: -.025em; }
+    .segment p { max-width: 350px; margin-bottom: 0; color: #b8c7bf; font-size: clamp(15px, 1.42vw, 20px); line-height: 1.55; }
+    .light .segment p { color: #4b5e56; }
+    .question-line { margin-top: auto; padding-top: 22px; color: var(--lime); font-size: clamp(15px, 1.45vw, 21px); font-weight: 800; }
+    .light .question-line { color: #587248; }
+    .fact-band { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 24px; }
+    .fact-band span { padding: 10px 14px; border: 1px solid var(--line); border-radius: 999px; color: var(--cream); font-size: clamp(13px, 1.15vw, 16px); }
+    .light .fact-band span { border-color: rgba(20,38,34,.22); color: var(--ink); }
+    .callout { display: flex; align-items: center; gap: 18px; margin-top: 25px; padding: 17px 20px; border-left: 5px solid var(--coral); background: rgba(255,255,255,.07); font-size: clamp(16px, 1.65vw, 23px); line-height: 1.45; }
+    .light .callout { background: rgba(20,38,34,.06); }
+    .callout strong { flex: 0 0 auto; color: var(--lime); font-size: clamp(13px, 1.2vw, 17px); letter-spacing: .04em; }
+    .light .callout strong { color: #587248; }
+    .offer-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: clamp(28px, 4vw, 48px); }
+    .offer { min-height: 250px; display: flex; flex-direction: column; padding: 24px 23px; border: 1px solid rgba(244,241,231,.3); background: rgba(255,255,255,.035); }
+    .offer .offer-label { margin-bottom: auto; color: var(--lime); font-size: 14px; font-weight: 800; letter-spacing: .1em; }
+    .offer h3 { margin: 24px 0 10px; font-size: clamp(25px, 2.6vw, 38px); line-height: 1.2; }
+    .offer p { margin: 0; color: #c1d0c8; font-size: clamp(15px, 1.4vw, 19px); line-height: 1.55; }
+    .offer small { margin-top: 16px; color: #aabbb2; font-size: 13px; }
+    .route { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; margin-top: clamp(36px, 5vw, 68px); counter-reset: route; }
+    .route-step { position: relative; padding-top: 25px; border-top: 2px solid var(--ink); counter-increment: route; }
+    .route-step::before { content: "0" counter(route); display: block; margin-bottom: 22px; color: #587248; font-size: 16px; font-weight: 900; }
+    .route-step h3 { margin-bottom: 9px; font-size: clamp(20px, 2.2vw, 31px); }
+    .route-step p { margin-bottom: 0; color: #425750; font-size: clamp(14px, 1.35vw, 18px); line-height: 1.5; }
+    .proposal-note { margin-top: auto; padding-top: 24px; color: #334941; font-size: clamp(13px, 1.2vw, 17px); font-weight: 800; }
+    .cta-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: 50px; align-items: center; flex: 1; }
+    .cta-title { max-width: 570px; }
+    .cta-list { display: grid; gap: 0; border-top: 1px solid var(--line); }
+    .cta-item { display: grid; grid-template-columns: 48px 1fr; gap: 18px; align-items: center; padding: 19px 0; border-bottom: 1px solid var(--line); font-size: clamp(18px, 2vw, 28px); }
+    .cta-item b { color: var(--lime); font-size: 16px; }
+    .cta-action { display: inline-flex; align-items: center; gap: 12px; margin-top: 26px; color: var(--ink); font-size: clamp(19px, 2.1vw, 30px); font-weight: 900; }
+    .cta-action::after { content: "↗"; display: inline-grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: var(--lime); font-size: 22px; }
+    .source-line { position: absolute; left: clamp(26px, 7.4vw, 112px); right: 210px; bottom: 34px; color: #9aaba2; font-size: clamp(10px, .9vw, 13px); line-height: 1.4; }
+    .light .source-line, .coral .source-line { color: #4f6158; }
+    .source-line a { color: inherit; }
+    .controls { position: absolute; z-index: 10; right: clamp(18px, 3vw, 42px); bottom: 25px; display: flex; align-items: center; gap: 9px; padding: 7px; border: 1px solid rgba(244,241,231,.18); border-radius: 999px; background: rgba(13,25,22,.9); backdrop-filter: blur(10px); }
+    .controls button { width: 38px; height: 38px; display: grid; place-items: center; border: 0; border-radius: 50%; background: transparent; color: var(--cream); cursor: pointer; font-size: 20px; }
+    .controls button:hover, .controls button:focus-visible { background: rgba(244,241,231,.14); outline: none; }
+    .counter { min-width: 58px; text-align: center; color: var(--cream); font-size: 13px; font-variant-numeric: tabular-nums; }
+    .progress { position: absolute; z-index: 12; left: 0; bottom: 0; height: 4px; width: 100%; background: rgba(244,241,231,.12); }
+    .progress i { display: block; height: 100%; width: 12.5%; background: var(--coral); transition: width .25s ease; }
+    .key-hint { position: absolute; z-index: 9; left: clamp(26px, 7.4vw, 112px); bottom: 38px; color: #9aaba2; font-size: 12px; letter-spacing: .04em; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    @media (max-width: 760px) {
+      body { display: block; overflow: hidden; }
+      .presentation { width: 100vw; height: 100dvh; aspect-ratio: auto; }
+      .slide { padding: 34px 24px 110px; overflow-y: auto; }
+      .slide::before { width: 78vw; right: -38vw; top: -28vw; }
+      .cover { justify-content: center; }
+      .cover h1 { font-size: clamp(46px, 13vw, 72px); }
+      h2 { font-size: clamp(34px, 9vw, 52px); }
+      .three-col, .two-col, .offer-grid, .route { grid-template-columns: 1fr; gap: 19px; }
+      .stack { margin-top: 25px; }
+      .segment { display: grid; grid-template-columns: 40px 1fr; column-gap: 12px; padding-top: 13px; }
+      .segment .num { grid-row: span 2; margin: 3px 0 0; }
+      .segment h3 { margin-bottom: 4px; font-size: 22px; }
+      .segment p { max-width: none; font-size: 15px; }
+      .question-line { margin-top: 24px; padding-bottom: 15px; font-size: 16px; }
+      .fact-band { margin-top: 22px; }
+      .callout { align-items: flex-start; margin-top: 19px; padding: 14px; font-size: 16px; }
+      .offer { min-height: 0; padding: 18px; }
+      .offer .offer-label { margin-bottom: 0; }
+      .offer h3 { margin: 12px 0 6px; font-size: 25px; }
+      .offer p { font-size: 15px; }
+      .route { margin-top: 26px; }
+      .route-step { display: grid; grid-template-columns: 48px 1fr; column-gap: 12px; padding-top: 13px; }
+      .route-step::before { grid-row: span 2; margin-bottom: 0; }
+      .route-step h3 { margin-bottom: 4px; font-size: 22px; }
+      .route-step p { font-size: 15px; }
+      .proposal-note { padding-bottom: 16px; }
+      .cta-layout { grid-template-columns: 1fr; gap: 25px; align-content: center; }
+      .cta-item { grid-template-columns: 34px 1fr; padding: 13px 0; font-size: 18px; }
+      .cta-action { margin-top: 18px; font-size: 20px; }
+      .source-line { position: static; margin-top: 24px; padding: 0 88px 0 0; font-size: 11px; }
+      .key-hint { display: none; }
+      .controls { right: 12px; bottom: 13px; }
+      .controls button { width: 34px; height: 34px; }
+      .progress { height: 3px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <main class="presentation" id="presentation" aria-label="台灣旅遊情報週報簡報">
+    <section class="slide cover active" aria-roledescription="投影片" aria-label="第 1 張，共 8 張">
+      <span class="title-mark" aria-hidden="true"></span>
+      <p class="eyebrow">台灣旅遊情報週報｜旅行社行銷講義</p>
+      <h1>每週旅遊情報<br><span>變成行程提案</span></h1>
+      <p class="subtitle">把官方資訊整理成親子、情侶與熟齡旅客看得懂的旅遊選擇。</p>
+      <div class="cover-meta"><span class="date-chip">報導期間 2026.11.16—11.22</span><strong>查詢日 2026.11.21</strong></div>
+      <p class="source-line">資料依交通部觀光署景點開放資料及官方活動頁整理。<a href="https://data.gov.tw/dataset/7777" target="_blank" rel="noreferrer">S01 景點資料集</a>｜非模擬資料</p>
+    </section>
+
+    <section class="slide light" aria-roledescription="投影片" aria-label="第 2 張，共 8 張">
+      <p class="eyebrow">02 / 市場需求</p>
+      <h2>沒有市場統計<br>先從旅客需求問起</h2>
+      <p class="subtitle">本頁是業務訪談框架，不代表市場調查結果。</p>
+      <div class="stack three-col">
+        <article class="segment"><span class="num">01</span><h3>親子</h3><p>同行孩子幾歲？想散步、騎乘，還是觀察自然？</p></article>
+        <article class="segment"><span class="num">02</span><h3>情侶</h3><p>偏好湖岸景觀、攝影步道，還是節慶活動？</p></article>
+        <article class="segment"><span class="num">03</span><h3>熟齡</h3><p>每日步行需求、休息頻率與無障礙需求是什麼？</p></article>
+      </div>
+      <p class="question-line">先問偏好，再配對有來源的景點與活動。</p>
+      <p class="source-line">需求問題為本簡報的業務訓練建議，非市場統計或已驗證的客戶調查。</p>
+    </section>
+
+    <section class="slide" aria-roledescription="投影片" aria-label="第 3 張，共 8 張">
+      <p class="eyebrow">03 / 親子旅遊</p>
+      <h2>自然探索<br>先看年齡與動線</h2>
+      <div class="stack three-col">
+        <article class="segment"><span class="num">湖岸</span><h3>日月潭水社段</h3><p>資料描述部分路段平緩，水社親水步道有無障礙斜坡道，並提及親子同遊。</p></article>
+        <article class="segment"><span class="num">地質</span><h3>和平島</h3><p>海蝕地形、化石與潮間帶觀察，資料明載適合親子及戶外教學。</p></article>
+        <article class="segment"><span class="num">節慶</span><h3>新北歡樂耶誕城</h3><p>官方公布日期：2026.11.13—12.27。每日節目與人流安排待確認。</p></article>
+      </div>
+      <div class="callout"><strong>業務先問</strong><span>孩子年齡、步行或推車需求、是否安排戲水。</span></div>
+      <p class="source-line">來源：<a href="https://data.gov.tw/dataset/7777" target="_blank" rel="noreferrer">S01 景點開放資料</a>、<a href="https://www.hpigeopark.org/" target="_blank" rel="noreferrer">S07 和平島地質公園</a>、<a href="https://eng.taiwan.net.tw/m1.aspx?lid=081758&sNo=0002019" target="_blank" rel="noreferrer">S08 新北歡樂耶誕城</a>｜查詢日 2026.11.21</p>
+    </section>
+
+    <section class="slide coral" aria-roledescription="投影片" aria-label="第 4 張，共 8 張">
+      <p class="eyebrow">04 / 情侶旅遊</p>
+      <h2>景觀可以提案<br>天氣不能保證</h2>
+      <div class="stack three-col">
+        <article class="segment"><span class="num">嘉義</span><h3>二延平步道</h3><p>步道約 2,165 公尺，有觀景平台，特色包括夕陽、雲海與攝影取景。</p></article>
+        <article class="segment"><span class="num">南投</span><h3>日月潭水社段</h3><p>沿湖岸串連多個據點。步行或騎乘方式，依旅客偏好與當日狀況確認。</p></article>
+        <article class="segment"><span class="num">新北</span><h3>城市節慶</h3><p>新北歡樂耶誕城活動期間至 2026.12.27。節目細節以主辦公告為準。</p></article>
+      </div>
+      <div class="callout"><strong>推薦用語</strong><span>「可列入景觀提案」；雲海、夕陽與活動內容不作保證。</span></div>
+      <p class="source-line">來源：<a href="https://eng.taiwan.net.tw/m1.aspx?id=A12-00535&sNo=0002016" target="_blank" rel="noreferrer">S05 二延平步道</a>、<a href="https://data.gov.tw/dataset/7777" target="_blank" rel="noreferrer">S01 日月潭水社段</a>、<a href="https://eng.taiwan.net.tw/m1.aspx?lid=081758&sNo=0002019" target="_blank" rel="noreferrer">S08 新北歡樂耶誕城</a>｜客群配對屬建議｜查詢日 2026.11.21</p>
+    </section>
+
+    <section class="slide light" aria-roledescription="投影片" aria-label="第 5 張，共 8 張">
+      <p class="eyebrow">05 / 熟齡旅遊</p>
+      <h2>先談步行需求<br>再談景點選擇</h2>
+      <div class="stack three-col">
+        <article class="segment"><span class="num">官方標籤</span><h3>阿里山</h3><p>觀光署景點頁列有熟齡旅遊與無障礙旅遊標籤；不代表所有路線皆無障礙。</p></article>
+        <article class="segment"><span class="num">路線資訊</span><h3>日月潭水社段</h3><p>資料描述部分路段平緩、有休憩點，親水步道為無障礙斜坡道。</p></article>
+        <article class="segment"><span class="num">園區資訊</span><h3>和平島</h3><p>開放資料提及無障礙設施；實際可到達範圍與當日服務待確認。</p></article>
+      </div>
+      <p class="question-line">詢問步行能力、輔具需求與休息頻率，逐段核實可及性。</p>
+      <p class="source-line">來源：<a href="https://eng.taiwan.net.tw/m1.aspx?id=247&sNo=0002016" target="_blank" rel="noreferrer">S03 阿里山景點頁</a>、<a href="https://data.gov.tw/dataset/7777" target="_blank" rel="noreferrer">S01 日月潭及和平島開放資料</a>｜查詢日 2026.11.21</p>
+    </section>
+
+    <section class="slide" aria-roledescription="投影片" aria-label="第 6 張，共 8 張">
+      <p class="eyebrow">06 / 推薦方案</p>
+      <h2>三個單點提案方向</h2>
+      <p class="subtitle">先選主題與旅客需求，再核實日期、交通和營運資訊。</p>
+      <div class="offer-grid">
+        <article class="offer"><span class="offer-label">親子｜北海岸</span><h3>和平島地質觀察</h3><p>海蝕地形、化石與潮間帶主題。</p><small>活動範圍與開放狀態待確認</small></article>
+        <article class="offer"><span class="offer-label">親子／熟齡｜南投</span><h3>日月潭湖岸慢遊</h3><p>以水社段步行與休息需求作規劃起點。</p><small>步道／騎乘選擇依旅客需求確認</small></article>
+        <article class="offer"><span class="offer-label">情侶｜嘉義</span><h3>二延平景觀步道</h3><p>以夕陽、雲海及攝影特色作提案主題。</p><small>天候、步道與步行能力待確認</small></article>
+      </div>
+      <p class="proposal-note">以上為單點提案方向，不是已確認的套裝行程；票價、交通、團位及路況均待確認。</p>
+      <p class="source-line">來源：<a href="https://www.hpigeopark.org/" target="_blank" rel="noreferrer">S07 和平島</a>、<a href="https://data.gov.tw/dataset/7777" target="_blank" rel="noreferrer">S01 日月潭水社段</a>、<a href="https://eng.taiwan.net.tw/m1.aspx?id=A12-00535&sNo=0002016" target="_blank" rel="noreferrer">S05 二延平步道</a>｜查詢日 2026.11.21</p>
+    </section>
+
+    <section class="slide coral" aria-roledescription="投影片" aria-label="第 7 張，共 8 張">
+      <p class="eyebrow">07 / 旅行社的專業優勢</p>
+      <h2>可建立的服務流程</h2>
+      <p class="subtitle">以下是專業優勢提案，並非已證實的旅行社實績或服務保證。</p>
+      <div class="route">
+        <article class="route-step"><h3>核對來源</h3><p>記錄資料連結、查詢日期與更新風險。</p></article>
+        <article class="route-step"><h3>了解旅客</h3><p>詢問同行者、步行需求與旅遊偏好。</p></article>
+        <article class="route-step"><h3>說明配對</h3><p>分開呈現已驗證資訊與行程建議。</p></article>
+        <article class="route-step"><h3>出發前複核</h3><p>再查活動、交通、票價與園區公告。</p></article>
+      </div>
+      <p class="proposal-note">流程提案｜成效、資歷、團位及履約能力未由本週資料證實。</p>
+      <p class="source-line">流程依本週報的資料與驗收規則整理；旅行社專業能力及實績需另提供證據。</p>
+    </section>
+
+    <section class="slide" aria-roledescription="投影片" aria-label="第 8 張，共 8 張">
+      <div class="cta-layout">
+        <div class="cta-title">
+          <p class="eyebrow">08 / 諮詢行動</p>
+          <h2>從偏好開始<br>準備下一份提案</h2>
+          <p class="subtitle">把需求告訴業務，再逐項確認可行的景點與日期。</p>
+          <span class="cta-action">洽詢旅行社業務</span>
+        </div>
+        <div class="cta-list" aria-label="諮詢時提供的資料">
+          <div class="cta-item"><b>01</b><span>預計出遊日期</span></div>
+          <div class="cta-item"><b>02</b><span>同行人數與年齡</span></div>
+          <div class="cta-item"><b>03</b><span>步行、休息與無障礙需求</span></div>
+          <div class="cta-item"><b>04</b><span>偏好的景點或活動主題</span></div>
+        </div>
+      </div>
+      <p class="source-line">提案前仍須確認價格、團位、交通、活動節目與景點營運資訊。資料查詢日 2026.11.21。</p>
+    </section>
+
+    <div class="key-hint" aria-hidden="true">使用 ← → 切換｜F 全螢幕</div>
+    <nav class="controls" aria-label="簡報控制">
+      <button type="button" id="prev" aria-label="上一張">‹</button>
+      <span class="counter" id="counter" aria-live="polite">01 / 08</span>
+      <button type="button" id="next" aria-label="下一張">›</button>
+      <button type="button" id="fullscreen" aria-label="全螢幕展示" title="全螢幕（F）">⛶</button>
+    </nav>
+    <div class="progress" aria-hidden="true"><i id="progress"></i></div>
+  </main>
+  <script>
+    (() => {
+      const slides = [...document.querySelectorAll('.slide')];
+      const counter = document.getElementById('counter');
+      const progress = document.getElementById('progress');
+      const presentation = document.getElementById('presentation');
+      let current = 0;
+      const show = (index) => {
+        current = (index + slides.length) % slides.length;
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === current);
+          slide.setAttribute('aria-hidden', i === current ? 'false' : 'true');
+          if (i === current) slide.scrollTop = 0;
+        });
+        counter.textContent = `${String(current + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+        progress.style.width = `${((current + 1) / slides.length) * 100}%`;
+        document.title = `${String(current + 1).padStart(2, '0')}｜台灣旅遊情報週報`;
+      };
+      document.getElementById('prev').addEventListener('click', () => show(current - 1));
+      document.getElementById('next').addEventListener('click', () => show(current + 1));
+      document.getElementById('fullscreen').addEventListener('click', async () => {
+        try {
+          if (!document.fullscreenElement) await presentation.requestFullscreen();
+          else await document.exitFullscreen();
+        } catch (error) { console.warn('Fullscreen is unavailable in this browser.', error); }
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.altKey || event.ctrlKey || event.metaKey) return;
+        if (['ArrowRight', 'PageDown', ' '].includes(event.key)) { event.preventDefault(); show(current + 1); }
+        else if (['ArrowLeft', 'PageUp'].includes(event.key)) { event.preventDefault(); show(current - 1); }
+        else if (event.key.toLowerCase() === 'f') document.getElementById('fullscreen').click();
+        else if (event.key === 'Home') show(0);
+        else if (event.key === 'End') show(slides.length - 1);
+      });
+      let touchX = null;
+      presentation.addEventListener('touchstart', (event) => { touchX = event.changedTouches[0].screenX; }, { passive: true });
+      presentation.addEventListener('touchend', (event) => {
+        if (touchX === null) return;
+        const delta = event.changedTouches[0].screenX - touchX;
+        if (Math.abs(delta) > 55) show(current + (delta < 0 ? 1 : -1));
+        touchX = null;
+      }, { passive: true });
+      show(0);
+    })();
+  </script>
+</body>
+</html>

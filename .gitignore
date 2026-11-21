@@ -1,0 +1,47 @@
+# Secrets and environment configuration
+.env
+.env.*
+!.env.example
+.envrc
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+.netrc
+.npmrc
+!.npmrc.example
+secrets.*
+secret/
+secrets/
+
+# Personal, customer, and local exports
+personal-data/
+customer-data/
+private-data/
+exports/
+*.pii
+
+# Local tools, downloaded dependencies, and generated build output
+.codex-pptx-build/
+ffmpeg-9.1/
+node_modules/
+dist/
+build/
+coverage/
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Generated validation and scratch files
+*.inspect.ndjson
+video/assets/voice-test.wav
+
+# Editor and operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+.history/
