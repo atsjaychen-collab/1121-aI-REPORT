@@ -33,7 +33,7 @@
 1. 閱讀 [專案協作規範](AGENTS.md)。
 2. 閱讀 [產品需求](docs/PRD.md)、[週報](docs/weekly-report.md) 及 [來源索引](research/sources.md)。
 3. 在瀏覽器預覽 `index.html`，再查看 [網站驗收紀錄](qa/website-prototype-2026-11-21.md)。
-4. 檢視 [簡報大綱](presentations/slide-outline.md)、[影片分鏡](video/storyboard.md) 及角色交接紀錄。
+5. 檢視 [簡報大綱](presentations/slide-outline.md)、[影片分鏡](video/storyboard.md) 及角色交接紀錄。
 
 ## 旅遊資料與隱私
 
@@ -41,7 +41,9 @@
 
 不要提交密碼、API Key、存取權杖、真實 `.env`、客戶個資或未授權媒體。`.gitignore` 排除常見環境設定、憑證、個資資料夾、下載依賴及本機建置產物；提交前仍須檢查 Git 暫存檔案清單與差異。`.env.example` 若新增，只能使用假值或留空欄位。
 
-## Git 使用方式
+## Git 與遠端發布
+
+此工作目錄目前已有 Git 提交 `Initial project files`。提交前先查看將納入的追蹤檔案及差異；忽略規則只影響尚未追蹤的檔案，已追蹤檔案即使新增至 `.gitignore` 仍會留在提交內。
 
 檢查本次準備提交的檔案及差異：
 
@@ -51,11 +53,13 @@ git diff --cached --name-only
 git diff --cached
 ```
 
-本機建立提交：
+建立後續本機提交：
 
 ```bash
 git add README.md .gitignore
+git diff --cached --name-only
+git diff --cached
 git commit -m "docs: 整理專案說明與忽略規則"
 ```
 
-設定遠端前，先確認儲存庫網址、可見性及將上傳的提交內容。遠端未確認前不要執行 `git push`；推送前再次檢查追蹤檔案及提交差異，並確認沒有 `.env`、憑證、帳號密碼或旅客個資。
+設定遠端前，先確認儲存庫網址、可見性及將上傳的提交內容。此專案目前沒有設定遠端；遠端目標尚未確認前不要執行 `git push`。推送前再次檢查將上傳的提交及檔案，確認沒有 `.env`、憑證、帳號密碼或旅客個資。
